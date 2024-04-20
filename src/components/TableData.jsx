@@ -11,9 +11,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 function TableData(props) {
+
+  //props containing asset values as rows and holding values as data
   const { row, holdingValues } = props;
+
+  //state to check whether the table is collapsed or not.
   const [open, setOpen] = React.useState(false);
 
+  //create a style variable so that I can reuse it
   const style = {fontWeight:"bold"}
 
   return (

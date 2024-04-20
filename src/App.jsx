@@ -7,8 +7,10 @@ import Paper from '@mui/material/Paper';
 import TableData from './components/TableData';
 function App() {
 
+  //state to store the data from api
   const [holdings, setHoldings] = useState([]);
 
+  //fetching the data from api
   const fetchData = async () => {
       try {
         const res = await axios.get("https://canopy-frontend-task.now.sh/api/holdings");
@@ -18,15 +20,16 @@ function App() {
       }
     };
   
-    useEffect(() => {
-      fetchData();
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
   
-    const result = Object.groupBy(holdings, ({ asset_class }) => asset_class);
+  // grouping the data into results as per the asset values
+  const result = Object.groupBy(holdings, ({ asset_class }) => asset_class);
 
 return (
   <TableContainer component={Paper}>
-    <Table aria-label="collapsible table">
+    <Table>
       <TableBody>
         {Object.entries(result).map(([value,holdings])=>(
           <TableData key={value} row={value} holdingValues={holdings}/>
